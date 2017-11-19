@@ -22,8 +22,9 @@ public class GestorSecretario {
     public ArrayList<String[]> getSecretarios() throws IOException, SQLException {
         ArrayList<Secretario> listSecre = sSecre.getSecretarios();
         ArrayList<String[]> strlistSecre = new ArrayList<>();
-        String[] strSecretario = new String[8];
+        String[] strSecretario;
         for (Secretario secretari : listSecre) {
+            strSecretario = new String[8];
             strSecretario[0] = secretari.getIdPersona() + "";
             strSecretario[1] = secretari.getCedula() + "";
             strSecretario[2] = secretari.getNombre();
@@ -34,6 +35,22 @@ public class GestorSecretario {
             strSecretario[7] = secretari.getLoginUsuario().getIdUsuario() + "";
             strlistSecre.add(strSecretario);
         }
+
         return strlistSecre;
+    }
+
+    public String[] getSecretario(int id) throws IOException, SQLException {
+        Secretario secre = sSecre.get(id);
+        String[] strSecre = new String[8];
+        strSecre[0] = secre.getIdPersona() + "";
+        strSecre[1] = secre.getCedula() + "";
+        strSecre[2] = secre.getNombre();
+        strSecre[3] = secre.getApellido();
+        strSecre[4] = secre.getTelefono() + "";
+        strSecre[5] = secre.getDireccion();
+        strSecre[6] = secre.getLoginUsuario().getNombreUsuario();
+        strSecre[7] = secre.getLoginUsuario().getIdUsuario() + "";
+        
+        return strSecre;
     }
 }
