@@ -38,7 +38,10 @@ public class GestorLogin {
             
         }
         
+        if(currentUser!= null)
+            allowAcces = true;
         
+                    
         return allowAcces;
     }
     
