@@ -1,10 +1,15 @@
 
 package Logic;
 
+import Business.Corte.Sala;
+import Business.Persona.Juez;
 import Business.Persona.Persona;
 import Business.Persona.Querellante;
+import Business.Persona.Secretario;
 import Business.Persona.Usuario;
+import data.JuezServices;
 import data.QuerellanteService;
+import data.UsuariosService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,8 +23,9 @@ public class GestorLogin {
      * @return
      */
     private Persona currentUser;
+    private String userType;
     
-    public boolean InicioSesion(String nombreUsuario, String password) throws ClassNotFoundException, InstantiationException, IllegalAccessException
+    public boolean InicioSesion(String nombreUsuario, String password) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException
     {
         
         boolean allowAcces = false;
@@ -36,9 +42,11 @@ public class GestorLogin {
             }
         }else
         {
+            Usuario user = getUsers(nombreUsuario, password);
+            if(user == null)
+               return false;
             
-            Class c = Class.forName("Business.Persona.Juez");
-            Object obj = c.newInstance();
+           currentUser = getPersona(user);
         }
         
         if(currentUser!= null)
@@ -65,11 +73,44 @@ public class GestorLogin {
         return currentUser;
     }
     
-    private Usuario getAllUsers()
+    private Usuario getUsers(String username, String password) throws SQLException, IOException
     {
+        UsuariosService dbUsers = new UsuariosService();
+        ArrayList<Usuario> user = dbUsers.getUsuarios();
         
+        for (Usuario usuario : user) {
+            if(usuario.getNombreUsuario().equals(username) && usuario.getPassword().equals(password))
+                return usuario;
+        }        
+        return null;
     }
     
-
-
+    private Persona getPersona(Usuario user) throws IOException, SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException
+    {
+        UsuariosService dbUs = new UsuariosService();
+        Persona per = dbUs.getPersonaById(user.getIdUsuario());
+        userType = per.getTipoUsuario();
+        Class c = Class.forName("Business.Persona." + userType);
+        Object obj = c.newInstance();
+        Persona result = (Persona) obj;
+        
+        switch(userType)
+        {
+            case "Secretario":
+                result = new Secretario(per.getIdPersona(), per.getCedula(), per.getNombre(), per.getApellido(), per.getTelefono(), per.getDireccion(), user.getNombreUsuario(), user.getPassword());
+            break;
+            case "Juez":
+                JuezServices dbjuez = new JuezServices();
+                Sala salaJuez = dbjuez.getSalaByUserName(user.getNombreUsuario());
+                result = new Juez(per.getIdPersona(), per.getCedula(), per.getNombre(), per.getApellido(), per.getTelefono(), per.getDireccion(), 0, salaJuez, user.getNombreUsuario(), user.getIdUsuario());
+            break;
+        }
+        
+        return result;
+    }
+    
+    public String getUserType()
+    {
+        return userType;
+    }
 }

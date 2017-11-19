@@ -16,7 +16,7 @@ public class test {
     public static GestorLogin gl = new  GestorLogin();
     public static void main (String[] args) throws IOException
     {
-        boolean a = gl.InicioSesion("158960356", null);
+        
         Persona p = gl.getCurrentUser();
     }
 
