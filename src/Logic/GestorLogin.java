@@ -3,6 +3,7 @@ package Logic;
 
 import Business.Persona.Persona;
 import Business.Persona.Querellante;
+import Business.Persona.Usuario;
 import data.QuerellanteService;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,7 +19,7 @@ public class GestorLogin {
      */
     private Persona currentUser;
     
-    public boolean InicioSesion(String nombreUsuario, String password)
+    public boolean InicioSesion(String nombreUsuario, String password) throws ClassNotFoundException, InstantiationException, IllegalAccessException
     {
         
         boolean allowAcces = false;
@@ -36,6 +37,8 @@ public class GestorLogin {
         }else
         {
             
+            Class c = Class.forName("Business.Persona.Juez");
+            Object obj = c.newInstance();
         }
         
         if(currentUser!= null)
@@ -60,6 +63,11 @@ public class GestorLogin {
 
     public Persona getCurrentUser() {
         return currentUser;
+    }
+    
+    private Usuario getAllUsers()
+    {
+        
     }
     
 
