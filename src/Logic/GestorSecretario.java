@@ -6,6 +6,7 @@
 package Logic;
 
 import Business.Persona.Secretario;
+import Business.Persona.Usuario;
 import data.SecretarioServices;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -52,5 +53,39 @@ public class GestorSecretario {
         strSecre[7] = secre.getLoginUsuario().getIdUsuario() + "";
         
         return strSecre;
+    }
+    
+    public void update(String[]infoSecre) throws SQLException, IOException{
+        Secretario upSecre = new Secretario();
+        Usuario usu = new Usuario();
+        usu.setNombreUsuario(infoSecre[6]);
+        upSecre.setIdPersona(Integer.parseInt(infoSecre[0]));
+        upSecre.setNombre(infoSecre[1]);
+        upSecre.setApellido(infoSecre[2]);
+        upSecre.setTelefono(Integer.parseInt(infoSecre[3]));
+        upSecre.setCedula(Integer.parseInt(infoSecre[4]));
+        upSecre.setDireccion(infoSecre[5]);
+        upSecre.setLoginUsuario(usu);
+        
+        sSecre.update(upSecre); 
+        
+    }
+    
+    public void delete(int id) throws SQLException, IOException{
+        sSecre.delete(id);
+    }
+    
+    public void create(String[] infoSecre){
+    Secretario upSecre = new Secretario();
+        Usuario usu = new Usuario();
+        usu.setNombreUsuario(infoSecre[5]);
+        
+        upSecre.setNombre(infoSecre[0]);
+        upSecre.setApellido(infoSecre[1]);
+        upSecre.setTelefono(Integer.parseInt(infoSecre[2]));
+        upSecre.setCedula(Integer.parseInt(infoSecre[3]));
+        upSecre.setDireccion(infoSecre[4]);
+        upSecre.setLoginUsuario(usu);
+    
     }
 }

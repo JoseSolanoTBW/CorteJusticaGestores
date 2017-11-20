@@ -2,3 +2,9 @@
 /dist/
 *.properties
 *.jar
+build/built-jar.properties
+nbproject/private/private.properties
+dist/CorteJusticiaGestores.jar
+nbproject/private/private.xml
+nbproject/project.properties
+dist/CorteJusticiaGestores.jar
