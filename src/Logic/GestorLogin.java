@@ -8,7 +8,7 @@ import Business.Persona.Querellante;
 import Business.Persona.Secretario;
 import Business.Persona.Usuario;
 import data.JuezServices;
-import data.QuerellanteService;
+import data.QuerellanteServices;
 import data.UsuariosService;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -57,9 +57,9 @@ public class GestorLogin {
     
     public Querellante encotrarQuerellante(int cedula) throws IOException, SQLException
     {
-        QuerellanteService dbQuerellantes = new QuerellanteService();
+        QuerellanteServices dbQuerellantes = new QuerellanteServices();
         
-       ArrayList<Querellante> listaQuerellante = dbQuerellantes.getSecretarios();
+       ArrayList<Querellante> listaQuerellante = dbQuerellantes.getQuerrellantes();
        
         for (Querellante querellante : listaQuerellante) {
             if(querellante.getCedula() == cedula)

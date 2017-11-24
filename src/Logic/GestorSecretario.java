@@ -75,7 +75,7 @@ public class GestorSecretario {
         sSecre.delete(id);
     }
     
-    public void create(String[] infoSecre){
+    public void create(String[] infoSecre) throws IOException, SQLException{
     Secretario upSecre = new Secretario();
         Usuario usu = new Usuario();
         usu.setNombreUsuario(infoSecre[5]);
@@ -86,6 +86,7 @@ public class GestorSecretario {
         upSecre.setCedula(Integer.parseInt(infoSecre[3]));
         upSecre.setDireccion(infoSecre[4]);
         upSecre.setLoginUsuario(usu);
+        sSecre.create(upSecre);
     
     }
 }
