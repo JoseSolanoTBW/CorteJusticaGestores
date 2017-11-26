@@ -86,4 +86,8 @@ public class GestorQuerellante {
         qService.create(upQuere);
     
     }
+    
+    public int getId(int cedula) throws SQLException, IOException{
+        return qService.getIdQuerellante(cedula);
+    }
 }
