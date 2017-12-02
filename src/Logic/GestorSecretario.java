@@ -7,7 +7,7 @@ package Logic;
 
 import Business.Persona.Secretario;
 import Business.Persona.Usuario;
-import data.SecretarioServices;
+import Services.SecretarioServices;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

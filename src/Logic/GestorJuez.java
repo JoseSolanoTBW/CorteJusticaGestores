@@ -8,7 +8,7 @@ package Logic;
 import Business.Corte.Sala;
 import Business.Persona.Juez;
 import Business.Persona.Usuario;
-import data.JuezServices;
+import Services.JuezServices;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

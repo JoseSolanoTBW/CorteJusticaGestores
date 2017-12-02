@@ -6,7 +6,7 @@
 package Logic;
 
 import Business.Corte.Sala;
-import data.SalaService;
+import Services.SalaService;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;

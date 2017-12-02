@@ -6,7 +6,7 @@
 package Logic;
 
 import Business.Persona.Querellante;
-import data.QuerellanteServices;
+import Services.QuerellanteServices;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
