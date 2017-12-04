@@ -90,40 +90,33 @@ public class GestorCasos {
 
     public  List getCheckBox(String CurrentStatus, String casoId)
     {
-        ChoiceBox choiceBox = new ChoiceBox();
          List result = new ArrayList<String>();
         switch(CurrentStatus)
         {
             case "Recibido":
-                choiceBox.getItems().addAll("Recibido","Aceptado","Rechazado");
                 result.add("Recibido");               
                 result.add("Aceptado");
                 result.add("Rechazado");
             break;
             case "Consulta":
-                choiceBox.getItems().addAll("Aceptado","Consulta","Rechazado");
                 result.add("Aceptado");
                 result.add("Consulta");
                 result.add("Rechazado");
             break;
             case "Aceptado":
-                choiceBox.getItems().addAll("Aceptado","Redactado");
                 result.add("Aceptado");
                 result.add("Redactado");
             break;
             case "Redactado":
-                choiceBox.getItems().addAll("Redactado","Revisión","Resuleto");
                 result.add("Redactado");
                 result.add("Revisión");
-                result.add("Resuleto");
+                result.add("Resuelto");
             break;
             case "Revisión":
-                choiceBox.getItems().addAll("Revisión","Redactado");
                 result.add("Redactado");
                 result.add("Revisión");
             break;
             default:
-                choiceBox.getItems().addAll(CurrentStatus);
                 result.add(CurrentStatus);
             break;
         }
@@ -151,7 +144,7 @@ public class GestorCasos {
             case "Revisión":
                 nuevoEstdo = 5;
             break;
-            case "Resuleto":
+            case "Resuelto":
                 nuevoEstdo = 6;
             break;
             case "Rechazado":
@@ -188,4 +181,8 @@ public class GestorCasos {
         }
         return casesResult;
     }
+     public void agregarSolucion(String idCaso, String text) throws IOException, SQLException
+     {
+         casosService.insertarResolucionCasoEstado(Integer.parseInt(idCaso), text);
+     }
 }
