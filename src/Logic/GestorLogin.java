@@ -14,6 +14,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author mean
+ */
 public class GestorLogin {
 
     /**
@@ -25,6 +29,17 @@ public class GestorLogin {
     private Persona currentUser;
     private String userType;
     
+    /**
+     *
+     * @param nombreUsuario
+     * @param password
+     * @return Retorna si el login es valido o no
+     * @throws ClassNotFoundException
+     * @throws InstantiationException
+     * @throws IllegalAccessException
+     * @throws SQLException
+     * @throws IOException
+     */
     public boolean InicioSesion(String nombreUsuario, String password) throws ClassNotFoundException, InstantiationException, IllegalAccessException, SQLException, IOException
     {
         
@@ -55,6 +70,13 @@ public class GestorLogin {
         return allowAcces;
     }
     
+    /**
+     *
+     * @param cedula
+     * @return encuentra un querellante en base a la cedula
+     * @throws IOException
+     * @throws SQLException
+     */
     public Querellante encotrarQuerellante(int cedula) throws IOException, SQLException
     {
         QuerellanteServices dbQuerellantes = new QuerellanteServices();
@@ -69,6 +91,10 @@ public class GestorLogin {
         return null;
     }
 
+    /**
+     *
+     * @return retorna el usuario actualmente logeado
+     */
     public Persona getCurrentUser() {
         return currentUser;
     }
@@ -109,6 +135,10 @@ public class GestorLogin {
         return result;
     }
     
+    /**
+     *
+     * @return Retorna un tipo de usuario
+     */
     public String getUserType()
     {
         return userType;

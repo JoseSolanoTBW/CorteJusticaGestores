@@ -20,6 +20,12 @@ public class GestorSecretario {
 
     SecretarioServices sSecre = new SecretarioServices();
 
+    /**
+     *
+     * @return Retorna una lista de arrays de strings de secretarios
+     * @throws IOException
+     * @throws SQLException
+     */
     public ArrayList<String[]> getSecretarios() throws IOException, SQLException {
         ArrayList<Secretario> listSecre = sSecre.getSecretarios();
         ArrayList<String[]> strlistSecre = new ArrayList<>();
@@ -40,6 +46,13 @@ public class GestorSecretario {
         return strlistSecre;
     }
 
+    /**
+     *
+     * @param id
+     * @return Retorna array con la info de un secretario
+     * @throws IOException
+     * @throws SQLException
+     */
     public String[] getSecretario(int id) throws IOException, SQLException {
         Secretario secre = sSecre.get(id);
         String[] strSecre = new String[8];
@@ -55,6 +68,12 @@ public class GestorSecretario {
         return strSecre;
     }
     
+    /**
+     * Crea un objecto secretario para que un servicio lo actualice en la base
+     * @param infoSecre
+     * @throws SQLException
+     * @throws IOException
+     */
     public void update(String[]infoSecre) throws SQLException, IOException{
         Secretario upSecre = new Secretario();
         Usuario usu = new Usuario();
@@ -71,10 +90,22 @@ public class GestorSecretario {
         
     }
     
+    /**
+     * Envia un id de secretario para borrarlo en la base
+     * @param id
+     * @throws SQLException
+     * @throws IOException
+     */
     public void delete(int id) throws SQLException, IOException{
         sSecre.delete(id);
     }
     
+    /**
+     * Crea un objeto secretario para crear insertarlo en la base
+     * @param infoSecre
+     * @throws IOException
+     * @throws SQLException
+     */
     public void create(String[] infoSecre) throws IOException, SQLException{
     Secretario upSecre = new Secretario();
         Usuario usu = new Usuario();

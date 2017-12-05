@@ -18,6 +18,13 @@ import java.util.ArrayList;
 public class GestorSala {
     
     SalaService salService = new SalaService();
+
+    /**
+     *
+     * @return Retorna una lista de string de las salas
+     * @throws IOException
+     * @throws SQLException
+     */
     public ArrayList<String[]> getSalas() throws IOException, SQLException{
     ArrayList<Sala> lisSala = salService.getSalas();
     ArrayList<String[]>strList = new ArrayList<>();

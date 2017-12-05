@@ -26,8 +26,13 @@ public class GestorJuez {
     
     JuezServices juezService = new JuezServices();
    
-    
-     public ArrayList<String[]> getJueces() throws IOException, SQLException {
+    /**
+     *
+     * @return Retorna un array de strings con los jueces 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public ArrayList<String[]> getJueces() throws IOException, SQLException {
         ArrayList<Juez> listSecre = juezService.getJueces();
         ArrayList<String[]> strlistSecre = new ArrayList<>();
         String[] strSecretario;
@@ -46,7 +51,14 @@ public class GestorJuez {
         return strlistSecre;
     }
      
-     public String[] getJuez(int id) throws SQLException, IOException{
+    /**
+     *
+     * @param id
+     * @return Retorna un array con la info del un juez 
+     * @throws SQLException
+     * @throws IOException
+     */
+    public String[] getJuez(int id) throws SQLException, IOException{
      Juez jue = juezService.get(id);
      String[] judge = new String[9];
      judge[0] = jue.getIdPersona()+"";
@@ -64,7 +76,13 @@ public class GestorJuez {
      
      }
      
-     public void update(String[] juez) throws SQLException, IOException{
+    /**
+     * Crea un objecto juez para actualizarlo en la base de datos
+     * @param juez
+     * @throws SQLException
+     * @throws IOException
+     */
+    public void update(String[] juez) throws SQLException, IOException{
          Juez ju = new Juez();
          Usuario usu = new Usuario();
          Sala sal  = new Sala();
@@ -84,7 +102,14 @@ public class GestorJuez {
          juezService.update(ju);
          
      }
-     public void create(String[] juez)throws SQLException, IOException{
+
+    /**
+     * Crea un objecto juez nuevo para ingresarlo en la base de datos
+     * @param juez
+     * @throws SQLException
+     * @throws IOException
+     */
+    public void create(String[] juez)throws SQLException, IOException{
          Juez ju = new Juez();
          Usuario usu = new Usuario();
          Sala sal  = new Sala();
@@ -105,7 +130,13 @@ public class GestorJuez {
          
      }
      
-     public void delete(int idPersona) throws SQLException, IOException {
+    /**
+     * Envia el id de un juez para eliminarlo
+     * @param idPersona
+     * @throws SQLException
+     * @throws IOException
+     */
+    public void delete(int idPersona) throws SQLException, IOException {
        
             juezService.delete(idPersona);
      

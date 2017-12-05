@@ -15,10 +15,21 @@ import java.util.List;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 
+/**
+ *
+ * @author mean
+ */
 public class GestorCasos {
 
     CasosService casosService = new CasosService();
     
+    /**
+     *
+     * @param id
+     * @return Retorna una lista de array con los casos del querellante
+     * @throws IOException
+     * @throws SQLException
+     */
     public ArrayList<String[]> getQuerellantes(int id) throws IOException, SQLException {
 
         ArrayList<Caso> listQuere = casosService.getCasosPorQuerellante(id);
@@ -35,6 +46,12 @@ public class GestorCasos {
         return casesResult;
     }
 
+    /**
+     *
+     * @return retorna un array con los casos en null
+     * @throws IOException
+     * @throws SQLException
+     */
     public ArrayList<String[]> getCasosNull() throws IOException, SQLException {
         ArrayList<Caso> listCa = casosService.getCasosNull();
         ArrayList<String[]> strlistCa = new ArrayList<>();
@@ -52,6 +69,14 @@ public class GestorCasos {
 
     }
 
+    /**
+     * Crea un objeto caso y lo envia a un servicio para crearlo en la base 
+     * de datos
+     * @param id
+     * @param desc
+     * @throws IOException
+     * @throws SQLException
+     */
     public void createCaso(int id, String desc) throws IOException, SQLException {
         JuezServices js = new JuezServices();
         Juez ju = new  Juez();
@@ -71,6 +96,13 @@ public class GestorCasos {
         casosService.create(cas);
     }
 
+    /**
+     *
+     * @param id
+     * @return Un array de con los casos de un Juez
+     * @throws IOException
+     * @throws SQLException
+     */
     public ArrayList<String[]> getCasosByJuez(int id) throws IOException, SQLException {
 
         ArrayList<Caso> listQuere = casosService.getCasosPorJuez(id);
@@ -88,6 +120,13 @@ public class GestorCasos {
         return casesResult;
     }
 
+    /**
+     *
+     * @param CurrentStatus
+     * @param casoId
+     * @return De acuerdo a estado actual retorna las opciones posibles de un 
+     * select box
+     */
     public  List getCheckBox(String CurrentStatus, String casoId)
     {
          List result = new ArrayList<String>();
@@ -123,6 +162,13 @@ public class GestorCasos {
         return result;
     }
 
+    /**
+     * Manda un id de estado de acuerdo al estado elegido
+     * @param idCaso
+     * @param estado
+     * @throws SQLException
+     * @throws IOException
+     */
     public void updateEstadoCaso(String idCaso, String estado) throws SQLException, IOException
     {
         int nuevoEstdo = 1;
@@ -154,7 +200,15 @@ public class GestorCasos {
         casosService.actualizarEstado(Integer.parseInt(idCaso), nuevoEstdo);
         casosService.createHistorial(nuevoEstdo, Integer.parseInt(idCaso));
     }
-     public String[] getCaso(int id) throws IOException, SQLException {
+
+    /**
+     *
+     * @param id
+     * @return Retorna un caso en especifico
+     * @throws IOException
+     * @throws SQLException
+     */
+    public String[] getCaso(int id) throws IOException, SQLException {
          Caso quere = casosService.getCasos(id);
         String[] casosInfo;
        
@@ -168,7 +222,14 @@ public class GestorCasos {
         return casosInfo;
     }
      
-     public ArrayList<String[]> getHistorialCaso(int id) throws IOException, SQLException 
+    /**
+     *
+     * @param id
+     * @return Retorna el un array de string con el historial del caso
+     * @throws IOException
+     * @throws SQLException
+     */
+    public ArrayList<String[]> getHistorialCaso(int id) throws IOException, SQLException 
      {
         ArrayList<DetalleHistorial> listQuere = casosService.getCasoId(id);
         ArrayList<String[]> casesResult = new ArrayList<>();
@@ -181,7 +242,15 @@ public class GestorCasos {
         }
         return casesResult;
     }
-     public void agregarSolucion(String idCaso, String text) throws IOException, SQLException
+
+    /**
+     * Agrega una solucion al estado
+     * @param idCaso
+     * @param text
+     * @throws IOException
+     * @throws SQLException
+     */
+    public void agregarSolucion(String idCaso, String text) throws IOException, SQLException
      {
          casosService.insertarResolucionCasoEstado(Integer.parseInt(idCaso), text);
      }

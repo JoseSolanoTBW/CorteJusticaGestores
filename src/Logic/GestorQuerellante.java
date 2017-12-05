@@ -18,8 +18,13 @@ import java.util.ArrayList;
 public class GestorQuerellante {
     QuerellanteServices qService = new QuerellanteServices();
     
-    
-     public ArrayList<String[]> getQuerellantes() throws IOException, SQLException {
+    /**
+     *
+     * @return Retorna una lista de string con los querellantes 
+     * @throws IOException
+     * @throws SQLException
+     */
+    public ArrayList<String[]> getQuerellantes() throws IOException, SQLException {
         ArrayList<Querellante> listQuere = qService.getQuerrellantes();
         ArrayList<String[]> strListQuere = new ArrayList<>();
         String[] strQuerellante;
@@ -38,6 +43,13 @@ public class GestorQuerellante {
         return strListQuere;
     }
 
+    /**
+     *
+     * @param id
+     * @return retorna un array con la informacion de un querellante
+     * @throws IOException
+     * @throws SQLException
+     */
     public String[] getQuerellante(int id) throws IOException, SQLException {
         Querellante secre = qService.get(id);
         String[] strSecre = new String[6];
@@ -52,6 +64,12 @@ public class GestorQuerellante {
         return strSecre;
     }
     
+    /**
+     * Crea un objecto querellante para enviarlo al service 
+     * @param infoQuere
+     * @throws SQLException
+     * @throws IOException
+     */
     public void update(String[]infoQuere) throws SQLException, IOException{
         Querellante upQuere = new Querellante();
        
@@ -68,10 +86,22 @@ public class GestorQuerellante {
         
     }
     
+    /**
+     * Envia el id de un querellante al service para borralo
+     * @param id
+     * @throws SQLException
+     * @throws IOException
+     */
     public void delete(int id) throws SQLException, IOException{
         qService.delete(id);
     }
     
+    /**
+     * Crea un objeto querellante para insertarlo
+     * @param infoSecre
+     * @throws IOException
+     * @throws SQLException
+     */
     public void create(String[] infoSecre) throws IOException, SQLException{
     Querellante upQuere = new Querellante();
        
@@ -87,6 +117,13 @@ public class GestorQuerellante {
     
     }
     
+    /**
+     * devuelve el id de un querellante
+     * @param cedula
+     * @return
+     * @throws SQLException
+     * @throws IOException
+     */
     public int getId(int cedula) throws SQLException, IOException{
         return qService.getIdQuerellante(cedula);
     }
