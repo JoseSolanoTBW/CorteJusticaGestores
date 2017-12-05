@@ -212,12 +212,13 @@ public class GestorCasos {
          Caso quere = casosService.getCasos(id);
         String[] casosInfo;
        
-            casosInfo = new String[5];
+            casosInfo = new String[6];
             casosInfo[0] = quere.getNumeroCaso() + "";
             casosInfo[1] = quere.getDescripcion() + "";
             casosInfo[2] = quere.getFechaCfeacion().toString();
             casosInfo[3] = quere.getDenunciante().getNombre() + " " + quere.getDenunciante().getApellido();
             casosInfo[4] = quere.getEstadoCaso().getNombre();
+            casosInfo[5] = quere.getResolucion();
        
         return casosInfo;
     }
