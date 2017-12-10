@@ -121,10 +121,12 @@ public class GestorJuez {
          ju.setDireccion(juez[4]);
          ju.setNumeroJuez(Integer.parseInt(juez[7]));
          usu.setNombreUsuario(juez[5]);
+         usu.setPassword(juez[8]);
          sal.setNombreSala(juez[6]);
          
          ju.setLoginUsuario(usu);
          ju.setSalaJustica(sal);
+         
          
          juezService.create(ju);
          

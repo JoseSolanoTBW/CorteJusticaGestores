@@ -110,6 +110,7 @@ public class GestorSecretario {
     Secretario upSecre = new Secretario();
         Usuario usu = new Usuario();
         usu.setNombreUsuario(infoSecre[5]);
+        usu.setPassword(infoSecre[6]);
         
         upSecre.setNombre(infoSecre[0]);
         upSecre.setApellido(infoSecre[1]);
@@ -117,6 +118,7 @@ public class GestorSecretario {
         upSecre.setCedula(Integer.parseInt(infoSecre[3]));
         upSecre.setDireccion(infoSecre[4]);
         upSecre.setLoginUsuario(usu);
+        
         sSecre.create(upSecre);
     
     }
